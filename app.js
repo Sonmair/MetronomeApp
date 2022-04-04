@@ -11,20 +11,14 @@ const addBeats = document.querySelector('.add-beats');
 const measureCount = document.querySelector('.measure-count');
 
 
-//put these variables into an array where it's randomized and the called upon
-const randomPitch 
-const pitchC1 = new Audio('');
-const pitchD1 = new Audio('');
-const pitchE1 = new Audio('');
-const pitchF2 = new Audio('');
-const pitchG1 = new Audio('');
-const pitchA1 = new Audio('');
-const pitchB1 = new Audio('');
+const click1 = new Audio('pitchC1.mp3');
+const click2 = new Audio('pitchD1.mp3');
 
 
 let bpm = 144;
-let count = 0;
 let beatsPerMeasure = 4;
+let count = 0;
+let isRunning = false;
 let tempoTextString = 'Allegro';
 
 decreaseTempoBtn.addEventListener('click', () => {
@@ -58,6 +52,19 @@ addBeats.addEventListener('click', () => {
     count = 0;
 });
 
+startStopBtn.addEventListener('click', () => {
+    count = 0;
+    if (!isRunning) {
+        metronome.start();
+        isRunning = true;
+        startStopBtn.textContent = 'STOP';
+    }   else    {
+        metronome.stop();
+        isRunning = false;
+        startStopBtn.textContent = 'START';
+    }
+});
+
 function updateMetronome() {
     tempoDisplay.textContent = bpm;
     tempoSlider.value = bpm;
@@ -85,18 +92,18 @@ function validateTempo() {
     if (bpm >= 288) {return};
 }
 
-function playPitch() {
+function playClick() {
     console.log(count);
     if (count === beatsPerMeasure) {
         count = 0;
     }
     if  (count === 0) {
-        randomPitch.play();
-        randomPitch.currentTime = 0;
-    } // else {
-   //     click2.play();
-   //     click2.currentTime = 0;
-   // }
+        click1.play();
+        click1.currentTime = 0;
+    }  else {
+        click2.play();
+        click2.currentTime = 0;
+   }
     count++;
 }
 
