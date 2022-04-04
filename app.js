@@ -10,7 +10,17 @@ const subtractBeats = document.querySelector('.subtract-beats');
 const addBeats = document.querySelector('.add-beats');
 const measureCount = document.querySelector('.measure-count');
 
-const click1 = new Audio('');
+
+//put these variables into an array where it's randomized and the called upon
+const randomPitch 
+const pitchC1 = new Audio('');
+const pitchD1 = new Audio('');
+const pitchE1 = new Audio('');
+const pitchF2 = new Audio('');
+const pitchG1 = new Audio('');
+const pitchA1 = new Audio('');
+const pitchB1 = new Audio('');
+
 
 let bpm = 144;
 let count = 0;
@@ -75,14 +85,14 @@ function validateTempo() {
     if (bpm >= 288) {return};
 }
 
-function playClick() {
+function playPitch() {
     console.log(count);
     if (count === beatsPerMeasure) {
         count = 0;
     }
     if  (count === 0) {
-        click1.play();
-        click1.currentTime = 0;
+        randomPitch.play();
+        randomPitch.currentTime = 0;
     } // else {
    //     click2.play();
    //     click2.currentTime = 0;
@@ -91,5 +101,3 @@ function playClick() {
 }
 
 const metronome = new Timer(playClick, 60000 / bpm, { immediate: true});
-
-metronome
